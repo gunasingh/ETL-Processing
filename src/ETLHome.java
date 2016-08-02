@@ -50,7 +50,7 @@ public class ETLHome {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		// Get command line argument for number of threads.
 		Options options = new Options();
@@ -79,12 +79,13 @@ public class ETLHome {
     	}
         
         // Start the log thread and create log file/directory.
+        Thread tLog = null;
         try {
 	        File dirLog = new File (Constants.DIR_LOG);
 			if (!dirLog.exists() || !dirLog.isDirectory()) {
 				dirLog.mkdirs();
 			}
-			Thread tLog = new Log(Constants.FILE_LOG);
+			tLog = new Log(Constants.FILE_LOG);
 			tLog.start();
         } catch (Exception e) {
         	System.out.println("Unable to start Log thread.");
@@ -98,16 +99,23 @@ public class ETLHome {
 		} catch (org.json.simple.parser.ParseException e) {
 			Log.log(Log.ERROR, "JSON parse error for devices/connections file." 
 					+ Constants.NEW_LINE + e.getMessage());
+			tLog.join();
 			System.exit(1);
 		} catch (IOException e) {
 			Log.log(Log.ERROR, "Unable to read devices/connections file."
 					+ Constants.NEW_LINE + e.getMessage());
+			tLog.join();
 			System.exit(1);
 		}
         
         // Loop through Imp directory and start Processor threads.
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);
         File dirImp = new File(Constants.DIR_IMPS);
+        if (!dirImp.isDirectory() || !dirImp.exists()) {
+        	Log.log(Log.ERROR, "Invalid input directory.");
+        	tLog.join();
+        	System.exit(1);
+        }
         File[] aFilesImp = dirImp.listFiles();
         if (aFilesImp != null) {
         	for (File fileImp : aFilesImp) {
