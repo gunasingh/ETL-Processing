@@ -1,36 +1,36 @@
 
 public class Imp {
-	private long timeStamp;
-	private String transactionId;
-	private int connectionType;
-	private int deviceType;
-	private int count;
+	private long m_timeStamp;
+	private String m_stTransactionId;
+	private int m_connectionType;
+	private int m_deviceType;
+	private int m_count;
 	
 	public Imp(long ts, String transId, int connType, int devType, int count) {
-		this.timeStamp = ts;
-		this.transactionId = transId;
-		this.connectionType = connType;
-		this.deviceType = devType;
-		this.count = count;
+		this.m_timeStamp = ts;
+		this.m_stTransactionId = transId;
+		this.m_connectionType = connType;
+		this.m_deviceType = devType;
+		this.m_count = count;
 	}
 	
 	public long getTimestamp() {
-		return timeStamp;
+		return m_timeStamp;
 	}
 	
 	public String getTransactionId() {
-		return transactionId;
+		return m_stTransactionId;
 	}
 	
 	public int getConnectionType() {
-		return connectionType;
+		return m_connectionType;
 	}
 	
 	public int getDeviceType() {
-		return deviceType;
+		return m_deviceType;
 	}
 	
 	public int getCount() {
-		return count;
+		return m_count;
 	}
 }

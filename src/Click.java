@@ -1,24 +1,24 @@
 
 public class Click {
-	private long timeStamp;
-	private String transactionId;
-	private int count;
+	private long m_timeStamp;
+	private String m_stTransactionId;
+	private int m_count;
 	
 	public Click(long ts, String transId, int count) {
-		this.timeStamp = ts;
-		this.transactionId = transId;
-		this.count = count;
+		this.m_timeStamp = ts;
+		this.m_stTransactionId = transId;
+		this.m_count = count;
 	}
 	
 	public long getTimestamp() {
-		return timeStamp;
+		return m_timeStamp;
 	}
 	
 	public String getTransactionId() {
-		return transactionId;
+		return m_stTransactionId;
 	}
 	
 	public int getCount() {
-		return count;
+		return m_count;
 	}
 }

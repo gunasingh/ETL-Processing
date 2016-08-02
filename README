@@ -1,0 +1,34 @@
+ETL Processor
+-------------
+
+-- The home directory is ETL-Processing-master which contains the java source files and the runnable .jar file etl-processing-1.0.jar
+
+Under the directory ETL-Processing-master, 
+	-- bin/ has all the .class files
+
+	-- etl-processing-1.0_lib/ has the external .jar files used by the 
+	application (for JSON processing and command-line arguments)
+
+	-- src/ has all the .java source files
+		-- ETLHome.java - Startup file for the application
+		-- Constants.java - Has all the default settings
+		-- Imp.java - Used to maintain an imp entry object
+		-- Click.java - Used to maintain an click entry object
+		-- Log.java - Logger thread that writes to the log file
+		-- Utilities.java - Has utility methods used by the worker threads
+		-- Processor.java - Worker thread that reads, processes the input imp/click files and writes to the out files
+
+	-- in/ has the input files
+
+	-- README - readme file
+
+To run the application,
+
+- The in/ input files/directory need to be in the same directory as the etl-processing-1.0.jar file
+
+- Jave Runtime Environment is necessary
+
+- Run the command,
+	java -jar etl-processing-1.0.jar [-n <number-of-threads>]
+
+	-- On successful run, out/ and log/ directories are created as expected 
